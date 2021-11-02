@@ -1,0 +1,133 @@
+# RESTful API
+Representational State Transfer atau REST menjelaskan gaya arsitektur untuk layanan web. 
+REST terdiri dari seperangkat standar atau batasan untuk berbagi data antara sistem yang berbeda dan sistem yang mengimplementasikan REST dikenal sebagai RESTful. 
+REST adalah konsep abstrak, bukan bahasa, kerangka kerja, atau jenis perangkat lunak.
+
+# REST Analogy
+Analogi untuk REST adalah menyimpan koleksi vinil vs menggunakan layanan streaming musik (spotify). 
+Dengan koleksi vinil fisik setiap rekaman harus diduplikasi secara keseluruhan untuk dibagikan dan didistribusikan salinannya. 
+Namun dengan layanan streaming musik yang sama persis dapat dibagikan selamanya melalui referensi ke beberapa data seperti judul lagu. 
+Dalam hal ini musik streaming (spotify) adalah layanan RESTful dan koleksi vinyl adalah layanan non-RESTful.
+
+# API Explained
+Sebuah API adalah Application Programming Interface yang merupakan antarmuka yang memungkinkan program perangkat lunak untuk berkomunikasi satu sama lain. Sebuah RESTful API hanyalah sebuah API yang menganut prinsip-prinsip dan kendala REST. Dalam Web API, Server menerima `request` melalui titik akhir URL dan mengirimkan `response` sebagai balasannya yang seringkali berupa data dalam format seperti `JSON`.
+
+# REST Principles
+Enam batasan pemandu mendefinisikan arsitektur REST yang diuraikan di bawah ini:
+1. Uniform Interface - Antarmuka komponen harus sama. Standar URI digunakan untuk mengidentifikasi sumber daya.
+2. Client-Server - Ada pemisahan masalah antara server yang menyimpan dan memanipulasi data antara client yang meminta dan menampilkan response.
+3. Stateless Interactions - Semua informasi tentang setiap `request` terkandung dalam setiap `request` individu dan tidak bergantung pada status sesi.
+4. Cacheable - Client dan Server dapat menyimpan sumber daya.
+5. Layered System - Client dapat dihubungkan ke server akhir atau lapisan perantara seperti load-balancer.
+6. Code on Demand (Opsional) - Client dapat mengunduh code yang mengurangi visibilitas dari luar.
+
+# Request & Response
+Fakta bahwa semua situs web memiliki URL yang diawali dengan http atau https untuk versi aman. 
+HyperText Transfer Protocol atau HTTP adalah metode komunikasi antara Client dan Server di Internet.
+
+URL sangat terlihat jelas dibrowser bar kami tetapi HTTP dapat digunakan untuk lebih dari sekadar meminta situs web dari server. Saat Anda membuka URL di web sebenarnya kita melakukan `request` GET pada sumber daya tertentu dan situs web yang dapat dilihat adalah isi tanggapannya.
+
+HTTP bekerja dengan membuka koneksi TCP (Transmission Control Protocol) ke PORT server 80 untuk http dan 443 untuk https untuk membuat `request` dan server yang mendengarkan merespons dengan `status` dan `body`.
+
+Request harus terdiri dari: URL, a method, header information, and a body.
+
+# Request Methods
+Ada empat `HTTP Method` utama atau juga disebut sebagai kata `HTTP Verbs` yang biasanya digunakan untuk berinteraksi dengan Web API. Metode ini menentukan tindakan yang akan dilakukan dengan sumber daya yang diberikan.
+
+Metode permintaan HTTP umumnya sesuai dengan paradigma CRUD yang merupakan singkatan dari (C)reate (R)etrieve (U)pdate (D)elete. Meskipun CRUD mengacu pada fungsi yang digunakan dalam operasi basis datan, namum dapat diterapkan untuk prinsip-prinsip desain tersebut ke `HTTP Verbs` di RESTful API.
+
+* Create, POST 		= Membuat sumber daya baru
+* Read, 	GET 		= Mengambil sumber daya
+*	Update, PUT 		= Memperbarui sumber daya yang ada
+* Delete, DELETE 	= Menghapus sumber daya
+
+## POST
+POST digunakan untuk membuat sumber daya baru. Contoh yang sudah dikenal POST adalah mendaftar sebagai pengguna di situs web atau aplikasi. Setelah mengirimkan formulir POST request dengan data pengguna mungkin dikirim ke server yang kemudian akan menulis informasi anda ke dalam database.
+
+## GET
+GET adalah operasi read-only yang aman yang tidak akan mengubah status server. Setiap kali Anda menekan URL seperti `https://www.google.com` anda mengirim GET request ke server Google.
+
+## PUT
+PUT memperbarui sumber daya yang ada dan mungkin digunakan untuk mengedit pengaturan pengguna yang ada. Tidak seperti POST, PUT adalah idempoten yang artinya panggilan yang sama dapat dilakukan beberapa kali tanpa menghasilkan hasil yang berbeda. Misalnya jika Anda mengirim POST permintaan yang sama untuk membuat pengguna baru dalam database beberapa kali itu akan membuat pengguna baru dengan data yang sama untuk setiap permintaan yang dibuat. Namun menggunakan PUT request yang sama pada pengguna yang sama akan terus menghasilkan hasil yang sama.
+
+## DELETE
+DELETE seperti namanya hanya akan menghapus sumber daya yang ada.
+
+# Response Codes
+Setelah permintaan melewati dari client ke server, server akan mengirim kembali `HTTP response` yang akan menyertakan metadata tentang respons yang dikenal sebagai `header` dan `body`. Bagian pertama dan terpenting dari `response` adalah `status code` yang menunjukkan jika request berhasil, jika ada kesalahan atau jika tindakan lain harus diambil.
+
+Response Code paling terkenal adalah 404 yang berarti Not Found. 404 adalah bagian dari 4xx kelas `status code` yang menunjukkan kesalahan klien. 
+
+Ada lima kelas kode status yang masing-masing berisi berbagai tanggapan:
+* 1xx, Information
+* 2xx, Success
+* 3xx, Redirection
+* 4xx, Client Error
+* 5xx, Server Error
+
+Tanggapan umum lainnya yang mungkin dikenal adalah 301 Moved Permanently yang digunakan untuk mengarahkan ulang situs web ke URL baru dan 500 Internal Server Error yang merupakan kesalahan yang sering muncul ketika sesuatu yang tidak terduga terjadi pada server yang membuat permintaan yang dimaksud tidak dapat dipenuhi.
+
+Sehubungan dengan RESTful API dan kata `HTTP Verbs` yang sesuai, semua respons harus berada dalam 2xx kisaran tersebut:
+* GET,		200 (OK)
+* POST,		201 (Created)
+* PUT,		200 (OK)
+* DELETE,	200	(OK), 202(Accepted), 204(No Content)
+
+200(OK) adalah response yang menunjukkan bahwa `request` berhasil, digunakan sebagai response saat mengirim `GET` atau `PUT` request. `POST` akan mengembalikan 201(Created) untuk menunjukkan bahwa sumber daya baru telah dibuat dan `DELETE` memiliki beberapa tanggapan yang dapat diterima yang menyampaikan bahwa permintaan telah diterima (202) atau 204(No Content) untuk dikembalikan karena sumber daya tidak ada lagi.
+
+# cURL
+Kami dapat menguji `status code` request sumber daya menggunakan cURL. 
+cURL adalah alat baris perintah yang digunakan untuk mentransfer data melalui URL. 
+Menggunakan cURL diikuti oleh `-i` atau `--include`, akan mengirim request `GET` ke URL dan menampilkan `header` dan `body`. Kita dapat menguji ini dengan membuka program baris perintah dan menguji cURL dengan Google.
+
+[Request https://www.google.com]
+$ curl -i https://www.google.com
+
+[200 Response]
+HTTP/2 200
+date: Tue, 19 Oct 2021 05:15:40 GMT
+expires: -1
+cache-control: private, max-age=0
+content-type: text/html; charset=ISO-8859-1
+...
+
+[200 Explained]
+cURL requst mengembalikan beberapa header dan seluruh body HTML dari response. Karena request berhasil melalui bagian pertama maka response `status code` adalah 200 bersama dengan versi HTTP(HTTP/1.1 atau HTTP/2).
+
+Karena permintaan khusus ini mengembalikan situs web. `content-type`(MIME type) yang dikembalikan adalah `text/html`. Dalam RESTful API anda mungkin akan melihat `application/json` untuk menunjukkan bahwa responsenya adalah JSON.
+
+[Request https://google.com]
+Menariknya, kita bisa melihat jenis respon lain dengan memasukkan URL yang sedikit berbeda. Lakukan curldi Google tanpa www.
+
+$ curl -i https://google.com
+
+[301 Response]
+HTTP/2 301
+location: https://www.google.com/
+content-type: text/html; charset=UTF-8
+
+[301 Explained]
+Google mengalihkan `google.com` ke `www.google.com` dan menggunakan response `301` untuk menunjukkan bahwa sumber daya harus dialihkan.
+
+# REST API Endpoints
+Saat API dibuat di server, data yang dikandungnya dapat diakses melalui `endpoints`. 
+Sebuah `endpoints` adalah URL dari `request` yang dapat menerima dan memproses request `GET`, `POST`, `PUT`, atau `DELETE`.
+
+URL API akan terdiri dari: Root, Path dan query parameters:
+* Root | https://api.example.com, https://api.example.com/v2 | Root API yang mungkin terdiri dari Protokol, domain dan versi
+* Path | /users/, /users/5 | Lokasi unik dari sumber daya tertentu 
+* Query Param | ?location=jakarta&age=21 | Pasangan nilai kunci opsional yang digunakan untuk `sorting`, `filtering` dan `pagination`
+
+Kita dapat menggabungkan semuanya untuk menerapkan sesuatu seperti contoh dibawah yang akan mengembalikan daftar semua pengguna dan menggunakan query parameter bernama `limit` untuk memfilter response agar hanya menyertakan sepuluh hasil.
+
+$ https://api.example.com/users?limit=10
+
+# RESTful API Important Concepts
+Umumnya ketika orang menyebut API sebagai RESTful API mereka mengacu pada konvensi penamaan yang digunakan untuk membangun `endpoints` URL API. 
+Beberapa konsep penting dari RESTful API standar adalah sebagai berikut:
+* Paths should be plural - Misalnya untuk mendapatkan pengguna dengan id 5 kita akan menggunakan `/users/5`, bukan `/user/5`.
+* Endpoints should not display the file extension - Meskipun API kemungkinan besar akan mengembalikan JSON, url tidak boleh diakhiri dengan `.json`.
+* Endpoints should use nouns, not verbs - Kata-kata seperti add dan delete tidak boleh muncul di REST URL. Untuk menambahkan pengguna baru, cukup mengirim `POST` request ke /users bukan sesuatu seperti `/users/add`. API harus dikembangkan untuk menangani beberapa jenis request ke URL yang sama.
+* Paths are case sensitive and should be written in lowercase with hyphens as opposed to underscores.
+
+Semua konvensi ini adalah pedoman karena tidak ada standar REST yang ketat untuk diikuti. Namun, memanfaatkan pedoman ini akan membuat API menjadi konsisten, familier, dan mudah dibaca serta dipahami.

@@ -1,0 +1,50 @@
+# HTTP!
+
+## Agenda
+* URL
+* HTTP Method
+* HTTP Header
+* HTTP Body
+* HTTP Response
+* HTTP Cookie
+
+## Hello, HTTP!
+
+### Stateless
+stateless merupakan request yang independen, tidak ada keterkatian atau hubungan dengan request sebelumnya dan setelahnya. dalam melakukan request client
+tidak harus melakukan request secara berurutan dan bebas. contohnya pada fb, jika ingin melihat profil bob ya kita melakukan request ke profil bob saja. tidak ada
+yang namanya aturan kita harus membuka profil alice kemudian  bob agar profil budi dapat ditampilkan. http didesain secara stateless karena tidak 'menyimpan'
+data apapun, informasi apapun dalam request.
+
+### Session
+Tadi bilang HTTP itu stateless tetapi kok pas masuk facebook harus login terlebih dahulu agar dapat menikmati layanannya? untuk menangani permasalahan ini HTTP
+memiliki fitur yang bernama `HTTP Cookie` yang bertujuan untuk memaksa client menyimpan informasi yang diberikan oleh server.
+
+### HTTP Version
+HTTP itu sebenarnya hanya spesifikasi seperti peraturan pada umumnya  selalu perkembang dan selalu diperbaharui, oleh karena itu kita dapat menikmati versi 
+HTTP yang berbeda secara sadar atau tidak sadar. 
+Pada saat tulisan ini ditulis kebanyakan situs web yang berjalan menggunakan `HTTP/1.1`(yang pasti kita gunakan dari 15 tahun sebelumnya) atau versi lanjutannya 
+yaitu HTTP2 yang mulai hadir sekitaran tahun 2015 dan saat ini juga versi tersebut banyak diadopsi oleh semua Web didunia.
+
+### HTTP/1.1 vs HTTP/2
+Pada saat kita melakukan request sebagai client ke web server, secara otomatis Web Browser kita akan menggunakan HTTP versi 2. namun saat web browser kita
+tidak mendukung HTTP/2 protokol akan melakukan fallback menggunakan HTTP/1.1. Jika dilihat secara garis besar tidak jauh berbeda spesifikasi antara HTTP/1.1
+dan HTTP/2, yang membedakannya adalah HTTP/2 request yang dikirim dalam bentuk teks akan dikonversi secara otomatis menjadi binary. Pada HTTP/1.1 request dikirim
+dalam bentuk raw text atau teks mentah.
+
+Karena HTTP/2 menggunakan algoritma kompresi untuk memperkecil request dan mendukung multiplexing(mengirim beberapa request dalam satu koneksi yang sama).
+Namun sebagai pengembang aplikasi web kita tidak perlu pusing akan perbedaan versi HTTP yang akan digunakan, karena biasanya sudah diurus secara
+otomatis versi HTTP yang digunakan oleh Web Server.
+
+### kenapa HTTPS?
+Kenapa menggunakan HTTPS? karena secara default HTTP tidaklah aman karena rentan terkena `MITM` atau Man in The Middle yaitu orang jahat yang berada dijaringan kamu
+saat terkoneksi dijaringan yang sama, dapat melihat request yang kamu kirim serta dapat mencuri request-response milikmu. Oleh karena itu ada yang namanya HTTPS,
+sama seperti HTTP tetapi dengan enkripsi. S pada HTTPS itu SSL(Secure Socket Layer) untuk melakukan enskripsi pada HTTP Request dan Response. Web yang menggunakan
+HTTP menggunakan schema `https://` pada url, sedangkan http hanya menggunakan `http://` tanpa huruf s atau secure.
+
+## Istilah pada HTTP!
+* Web Browser - aplikasi yang digunakan untuk mengakses web dan menggunakan protokol HTTP, contohnya: Google Chrome, Firefox, Opera, Safari, dll.
+* TCP - 
+
+## Referensi
+* [HTTP/2 70% Adoption](https://almanac.httparchive.org/en/2020/http)
