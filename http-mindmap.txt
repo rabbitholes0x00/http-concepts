@@ -1,0 +1,41 @@
+# HTTP Mindmap
+List of HTTP Mindmap
+
+## Background
+* A Brief Overview & History of HTTP
+* How the Internet Works
+* Client & Server
+* HTTP Statelesness
+
+## URL
+* URL vs URI
+* URL Components
+* Query Strings & Parameters
+* URL Encoding
+
+## Tools of HTTP
+httpie(cli) & postman(gui)
+
+## HTTP Requests
+* GET Requests with cURL 
+* POST Requests with cURL
+* Reading Requests with Inspector Elements
+* HTTP Headers & Requests Headers Components
+
+## HTTP Responses
+* Reading Status Code
+* HTTP Headers & Responses Headers Components
+
+## Stateful Web App
+* How Stateful Web App works
+* Session
+* Cookies
+* AJAX
+
+## HTTP Security
+* HTTP vs HTTPS
+* Same-origin policy
+* Session Hijacking
+* XSS
+* CORS
+* CSRF
