@@ -5,6 +5,7 @@ List of HTTP Mindmap
 * A Brief Overview & History of HTTP
 * How the Internet Works
 * Client & Server
+* Web Server (Apache & NGINX)
 * HTTP Statelesness
 
 ## URL
